@@ -22,12 +22,14 @@ public class GitHubServiceGenerator {
     private static HttpLoggingInterceptor logging = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
 
 
+
+
     public static <S> S createService(Class<S> serviceClass final String token){
         if (token != null){
             httpClient.interceptors().clear();
             httpClient.addInterceptor(new Interceptor() {
                 @Override
-                public Response intercept(Chain chain) throws IOException {
+                public Response intercept(Interceptor.Chain chain) throws IOException {
                     Request original = chain.request();
                     Request.Builder builder = original.newBuilder().header("Authorization",token);
                     Request request = builder.build();
