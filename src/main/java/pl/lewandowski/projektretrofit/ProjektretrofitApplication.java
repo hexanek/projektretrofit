@@ -11,12 +11,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 import java.sql.SQLOutput;
+import java.util.List;
 
 @SpringBootApplication
 public class ProjektretrofitApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         SpringApplication.run(ProjektretrofitApplication.class, args);
+
+        String userName = "eugenp";
+        List<String> topContributors = new GitHubService().getTopContributors(userName);
+        topContributors.forEach(System.out::println);
 
 
     }
